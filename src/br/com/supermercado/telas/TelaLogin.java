@@ -2,7 +2,7 @@ package br.com.supermercado.telas;
 
 import java.sql.*;
 import br.com.supermercado.dal.ModuloDeConexao;
-//import java.awt.Color;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -61,10 +61,8 @@ public void Logar() {
             
            
             if (rs.next()){
-            
                String perfil = rs.getString(7);
-               
-               if(perfil.equals("Administrador")){
+            if(perfil.equals("Administrador")){
                TelaPrincipal tp = new TelaPrincipal();
                tp.setVisible(true);
                TelaPrincipal.jmTelaPrincipalMenuMenuUsuario.setEnabled(true);
@@ -73,6 +71,8 @@ public void Logar() {
                TelaPrincipal.jmTelaPrincipalMenuVendasCaixa.setEnabled(true);
                TelaPrincipal.jmTelaPrincipalMenuPedidosNovo.setEnabled(true);
                TelaPrincipal.jmTelaPrincipalMenuMenuFerramentas.setEnabled(true);
+               TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               TelaPrincipal.jlTelaPrincipalUsuario.setForeground(Color.RED);
                this.dispose();
                
                }else if(perfil.equals("Usuário do Sistema")){
@@ -81,22 +81,36 @@ public void Logar() {
                TelaPrincipal.jmTelaPrincipaMenuMenulFornecedores.setEnabled(true);
                TelaPrincipal.jmTelaPrincipalMenuMenuProdutos.setEnabled(true);
                TelaPrincipal.jmTelaPrincipalMenuPedidosNovo.setEnabled(true);
+               TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               TelaVendas.jlTelaVendasCaixa.setText(rs.getString(2));
+               TelaVendas.jlTelaVendasCaixa.setForeground(Color.RED);
                this.dispose();
                
                }else if(perfil.equals("Caixa")){
                TelaPrincipal tp2 = new TelaPrincipal();
                tp2.setVisible(true);
                TelaPrincipal.jmTelaPrincipalMenuVendasCaixa.setEnabled(true);
+               TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               TelaVendas.jlTelaVendasCaixa.setText(rs.getString(2));
+               TelaVendas.jlTelaVendasCaixa.setForeground(Color.RED);
                this.dispose();
                
                }else{
                    
                TelaPrincipal tp = new TelaPrincipal();
-               TelaPrincipal tp1 = new TelaPrincipal();
-               TelaPrincipal tp2 = new TelaPrincipal();
                tp.setVisible(true);
+               //TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               //TelaPrincipal.jlTelaPrincipalUsuario.setForeground(Color.red);
+               
+               TelaPrincipal tp1 = new TelaPrincipal();
                tp1.setVisible(true);
+               
+               TelaPrincipal tp2 = new TelaPrincipal();
                tp2.setVisible(true);
+               //TelaPrincipal.jmTelaPrincipalMenuVendasCaixa.setEnabled(true);
+               //TelaVendas.jlTelaVendasCaixa.setText(rs.getString(2));
+               //TelaVendas.jlTelaVendasCaixa.setForeground(Color.red);
+              
                this.dispose();
                conexao.close();
                }
@@ -239,20 +253,29 @@ public void Logar() {
             rs = ps.executeQuery();
             if (rs.next()){
                String perfil = rs.getString(7);
-               if(perfil.equals("Administrador")){
+                if(perfil.equals("Administrador")){ 
+                   
                TelaPrincipal tp = new TelaPrincipal();
                tp.setVisible(true);
-               TelaPrincipal.jmTelaPrincipalMenuMenuUsuario.setEnabled(true);
-               TelaPrincipal.jmTelaPrincipalMenuMenuFerramentas.setEnabled(true);
+               //TelaPrincipal.jmTelaPrincipalMenuMenuUsuario.setEnabled(true);
+               //TelaPrincipal.jmTelaPrincipalMenuMenuFerramentas.setEnabled(true);
+               //TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               //TelaPrincipal.jlTelaPrincipalUsuario.setForeground(Color.red);
                this.dispose();
+               
                }else{
+                   
                TelaPrincipal tp = new TelaPrincipal();
                tp.setVisible(true);
+               //TelaPrincipal.jlTelaPrincipalUsuario.setText(rs.getString(2));
+               //TelaPrincipal.jlTelaPrincipalUsuario.setForeground(Color.red);
                this.dispose();
                conexao.close();
                }
+              
+               this.dispose();
                }else{
-           JOptionPane.showMessageDialog(null,"Usuário ou Senha inválido");
+                     JOptionPane.showMessageDialog(null,"Usuário ou Senha inválido");
           }         
     } catch (Exception e) {
     }

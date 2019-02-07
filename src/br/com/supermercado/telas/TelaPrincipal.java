@@ -3,9 +3,15 @@ package br.com.supermercado.telas;
 import br.com.supermercado.dal.ModuloDeConexao;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 /**
  *
  * @author Paulo Abreu
@@ -35,12 +41,18 @@ this.setIconImage(iconeTelaPrincipal);
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpTelaPrincipalLogoSupermercadoSergipe = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jlTelaFundoPrincipal = new javax.swing.JLabel();
+        jpTelaPrincipalStatusNomeDataHora = new javax.swing.JPanel();
+        jlTelaPrincipalData = new javax.swing.JLabel();
+        jlTelaPrincipalHora = new javax.swing.JLabel();
+        jlTelaPrincipalUsuario = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jlTelaPrincipalMensagem = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jmbTelaPrincipalMenu = new javax.swing.JMenuBar();
         jmTelaPrincipalMenuMenuCadastros = new javax.swing.JMenu();
         jmTelaPrincipalMenuMenuUsuario = new javax.swing.JMenuItem();
@@ -59,42 +71,113 @@ this.setIconImage(iconeTelaPrincipal);
         setTitle("Supermercado - Tela Principal");
         setExtendedState(6);
         setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Tela Principal", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 24))); // NOI18N
-        jPanel1.setLayout(null);
+        jpTelaPrincipalLogoSupermercadoSergipe.setBackground(new java.awt.Color(255, 255, 255));
+        jpTelaPrincipalLogoSupermercadoSergipe.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Tela Principal", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 24))); // NOI18N
+        jpTelaPrincipalLogoSupermercadoSergipe.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/supermercado/icones/imagemLogoCarroSupermercado01.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 170, 390, 410);
+        jpTelaPrincipalLogoSupermercadoSergipe.add(jLabel1);
+        jLabel1.setBounds(20, 130, 390, 410);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Supermercado Sergipe");
-        jPanel1.add(jLabel2);
+        jpTelaPrincipalLogoSupermercadoSergipe.add(jLabel2);
         jLabel2.setBounds(230, 70, 570, 90);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Preços mais baixos ");
-        jPanel1.add(jLabel3);
+        jpTelaPrincipalLogoSupermercadoSergipe.add(jLabel3);
         jLabel3.setBounds(410, 300, 360, 43);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("não existe");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(570, 360, 190, 50);
+        jLabel5.setText("não existe!");
+        jpTelaPrincipalLogoSupermercadoSergipe.add(jLabel5);
+        jLabel5.setBounds(560, 360, 190, 50);
+
+        getContentPane().add(jpTelaPrincipalLogoSupermercadoSergipe);
+        jpTelaPrincipalLogoSupermercadoSergipe.setBounds(40, 110, 820, 550);
+
+        jpTelaPrincipalStatusNomeDataHora.setBackground(new java.awt.Color(255, 255, 255));
+        jpTelaPrincipalStatusNomeDataHora.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Status", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 24))); // NOI18N
+
+        jlTelaPrincipalData.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlTelaPrincipalData.setText("Data");
+
+        jlTelaPrincipalHora.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlTelaPrincipalHora.setText("Hora");
+
+        jlTelaPrincipalUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlTelaPrincipalUsuario.setText("Usuário");
+
+        javax.swing.GroupLayout jpTelaPrincipalStatusNomeDataHoraLayout = new javax.swing.GroupLayout(jpTelaPrincipalStatusNomeDataHora);
+        jpTelaPrincipalStatusNomeDataHora.setLayout(jpTelaPrincipalStatusNomeDataHoraLayout);
+        jpTelaPrincipalStatusNomeDataHoraLayout.setHorizontalGroup(
+            jpTelaPrincipalStatusNomeDataHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTelaPrincipalStatusNomeDataHoraLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTelaPrincipalUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addComponent(jlTelaPrincipalData, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168)
+                .addComponent(jlTelaPrincipalHora, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
+        );
+        jpTelaPrincipalStatusNomeDataHoraLayout.setVerticalGroup(
+            jpTelaPrincipalStatusNomeDataHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTelaPrincipalStatusNomeDataHoraLayout.createSequentialGroup()
+                .addGroup(jpTelaPrincipalStatusNomeDataHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlTelaPrincipalUsuario)
+                    .addComponent(jlTelaPrincipalData)
+                    .addComponent(jlTelaPrincipalHora))
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jpTelaPrincipalStatusNomeDataHora);
+        jpTelaPrincipalStatusNomeDataHora.setBounds(40, 30, 820, 60);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Mensagem", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 24))); // NOI18N
+
+        jlTelaPrincipalMensagem.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jlTelaPrincipalMensagem.setForeground(new java.awt.Color(255, 0, 0));
+        jlTelaPrincipalMensagem.setText("Seja Bem-Vindo ao Sistema!");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(jlTelaPrincipalMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTelaPrincipalMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(60, 50, 820, 590);
+        jPanel1.setBounds(880, 30, 450, 150);
 
-        jlTelaFundoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        jlTelaFundoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/supermercado/icones/imagemGrafiteTelaFundoJPcadastroUsuarioMenu.jpg"))); // NOI18N
-        getContentPane().add(jlTelaFundoPrincipal);
-        jlTelaFundoPrincipal.setBounds(0, 0, 1370, 710);
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/supermercado/icones/imagemGrafiteTelaFundoJPcadastroUsuarioMenu.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1637, 1160);
 
         jmTelaPrincipalMenuMenuCadastros.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jmTelaPrincipalMenuMenuCadastros.setText("Cadastros");
@@ -183,7 +266,7 @@ this.setIconImage(iconeTelaPrincipal);
 
         setJMenuBar(jmbTelaPrincipalMenu);
 
-        setSize(new java.awt.Dimension(1385, 763));
+        setSize(new java.awt.Dimension(1385, 757));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,6 +293,16 @@ this.setIconImage(iconeTelaPrincipal);
        tv.setVisible(true);
        
     }//GEN-LAST:event_jmTelaPrincipalMenuVendasCaixaActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+         Date data = new Date ();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        jlTelaPrincipalData.setText(formatador.format(data));
+        
+        Timer timer = new Timer (1000, new hora());
+        timer.start();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -250,9 +343,13 @@ this.setIconImage(iconeTelaPrincipal);
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel jlTelaFundoPrincipal;
+    private javax.swing.JLabel jlTelaPrincipalData;
+    private javax.swing.JLabel jlTelaPrincipalHora;
+    private javax.swing.JLabel jlTelaPrincipalMensagem;
+    public static javax.swing.JLabel jlTelaPrincipalUsuario;
     public static javax.swing.JMenuItem jmTelaPrincipaMenuMenulFornecedores;
     private javax.swing.JMenu jmTelaPrincipalMenuMenuCadastros;
     public static javax.swing.JMenu jmTelaPrincipalMenuMenuFerramentas;
@@ -266,5 +363,14 @@ this.setIconImage(iconeTelaPrincipal);
     private javax.swing.JMenuItem jmTelaPrincipalMenuSairSair;
     public static javax.swing.JMenuItem jmTelaPrincipalMenuVendasCaixa;
     private javax.swing.JMenuBar jmbTelaPrincipalMenu;
+    private javax.swing.JPanel jpTelaPrincipalLogoSupermercadoSergipe;
+    private javax.swing.JPanel jpTelaPrincipalStatusNomeDataHora;
     // End of variables declaration//GEN-END:variables
+class hora implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        Calendar now = Calendar.getInstance();
+                jlTelaPrincipalHora.setText(String.format("%1$tH:%1$tM:%1$tS",now));
+    }
+}
+
 }

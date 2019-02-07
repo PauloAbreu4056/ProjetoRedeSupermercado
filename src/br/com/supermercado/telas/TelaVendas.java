@@ -2,12 +2,19 @@
 package br.com.supermercado.telas;
 
 import br.com.supermercado.dal.ModuloDeConexao;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.Timer;
 /**
  *
  * @author Paulo Abreu
@@ -54,15 +61,20 @@ this.setIconImage(iconeTelaPrincipal);
         jtfValorTotal = new javax.swing.JTextField();
         jtfTelaVendasValorValor = new javax.swing.JTextField();
         jtfTelaVendasSusTotal = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jpTelaVendasStatusCaixaDataHora = new javax.swing.JPanel();
+        jlTelaVendasHora = new javax.swing.JLabel();
+        jlTelaVendasData = new javax.swing.JLabel();
+        jlTelaVendasCaixa = new javax.swing.JLabel();
         jlTelaVendasImagemFundoGrafite = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Supermercado - Vendas");
         setExtendedState(6);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jpTelaVendasVendas.setBackground(new java.awt.Color(255, 0, 0));
@@ -122,36 +134,54 @@ this.setIconImage(iconeTelaPrincipal);
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 330, 470, 280);
 
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Status", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 18))); // NOI18N
-        jPanel2.setLayout(null);
+        jpTelaVendasStatusCaixaDataHora.setBackground(new java.awt.Color(255, 0, 0));
+        jpTelaVendasStatusCaixaDataHora.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Status", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 18))); // NOI18N
+        jpTelaVendasStatusCaixaDataHora.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Caixa");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(30, 20, 60, 20);
+        jlTelaVendasHora.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlTelaVendasHora.setText("Hora");
+        jpTelaVendasStatusCaixaDataHora.add(jlTelaVendasHora);
+        jlTelaVendasHora.setBounds(490, 30, 160, 22);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setText("Data");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(260, 20, 60, 20);
+        jlTelaVendasData.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlTelaVendasData.setText("Data");
+        jpTelaVendasStatusCaixaDataHora.add(jlTelaVendasData);
+        jlTelaVendasData.setBounds(300, 30, 130, 20);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setText("Hora");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(460, 20, 60, 22);
+        jlTelaVendasCaixa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlTelaVendasCaixa.setText("Caixa");
+        jpTelaVendasStatusCaixaDataHora.add(jlTelaVendasCaixa);
+        jlTelaVendasCaixa.setBounds(30, 30, 180, 22);
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(690, 30, 660, 60);
+        getContentPane().add(jpTelaVendasStatusCaixaDataHora);
+        jpTelaVendasStatusCaixaDataHora.setBounds(690, 20, 660, 70);
 
         jlTelaVendasImagemFundoGrafite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/supermercado/icones/imagemGrafiteTelaFundoJPcadastroUsuarioMenu.jpg"))); // NOI18N
         getContentPane().add(jlTelaVendasImagemFundoGrafite);
-        jlTelaVendasImagemFundoGrafite.setBounds(0, 0, 1370, 720);
+        jlTelaVendasImagemFundoGrafite.setBounds(-30, -10, 1420, 740);
 
         setSize(new java.awt.Dimension(1386, 764));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        Date data = new Date ();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        jlTelaVendasData.setText(formatador.format(data));
+        
+        Timer timer = new Timer (1000, new hora());
+        timer.start();
+    }//GEN-LAST:event_formWindowActivated
+ /*private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
+        // TODO add your handling code here:
+        Date data = new Date ();
+        DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
+        jlTelaVendasData.setText(formatador.format(data));
+        
+        Timer timer = new Timer (1000, new hora());
+        timer.start();
+    } */
     /**
      * @param args the command line arguments
      */
@@ -188,18 +218,18 @@ this.setIconImage(iconeTelaPrincipal);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public static javax.swing.JLabel jlTelaVendasCaixa;
+    private javax.swing.JLabel jlTelaVendasData;
     private javax.swing.JLabel jlTelaVendasDescricao;
+    private javax.swing.JLabel jlTelaVendasHora;
     private javax.swing.JLabel jlTelaVendasImagemFundoGrafite;
     private javax.swing.JLabel jlTelaVendasQuantidade;
     private javax.swing.JLabel jlTelaVendasValor;
     private javax.swing.JLabel jlTelaVendasValorValorTotal;
     private javax.swing.JLabel jlTelaVendasVendasSubTotal;
     private javax.swing.JLabel jlTelaVendasVendasTotal;
+    private javax.swing.JPanel jpTelaVendasStatusCaixaDataHora;
     private javax.swing.JPanel jpTelaVendasVendas;
     private javax.swing.JTextField jtfTelaVandasDescricao;
     private javax.swing.JTextField jtfTelaVendasQuantidade;
@@ -208,4 +238,12 @@ this.setIconImage(iconeTelaPrincipal);
     private javax.swing.JTextField jtfTelaVendasValorValor;
     private javax.swing.JTextField jtfValorTotal;
     // End of variables declaration//GEN-END:variables
+class hora implements ActionListener{
+    public void actionPerformed(ActionEvent e){
+        Calendar now = Calendar.getInstance();
+                jlTelaVendasHora.setText(String.format("%1$tH:%1$tM:%1$tS",now));
+    }
 }
+
+}
+

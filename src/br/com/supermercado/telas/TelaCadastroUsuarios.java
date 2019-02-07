@@ -253,16 +253,19 @@ this.setIconImage(iconeTelaPrincipal);
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setText("jButton1");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpTelaCadastroUsuarioAcolheImagemAzulMenu.add(jButton1);
         jButton1.setBounds(40, 540, 90, 90);
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton2.setText("jButton2");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpTelaCadastroUsuarioAcolheImagemAzulMenu.add(jButton2);
         jButton2.setBounds(40, 430, 90, 90);
 
         jbTelaCadastroUsuarioMenuOpcoesAtualizar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbTelaCadastroUsuarioMenuOpcoesAtualizar.setText("Atualizar");
+        jbTelaCadastroUsuarioMenuOpcoesAtualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbTelaCadastroUsuarioMenuOpcoesAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbTelaCadastroUsuarioMenuOpcoesAtualizarActionPerformed(evt);
@@ -273,6 +276,7 @@ this.setIconImage(iconeTelaPrincipal);
 
         jbTelaCadastroUsuarioMenuOpcoesConsultar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbTelaCadastroUsuarioMenuOpcoesConsultar.setText("Consultar");
+        jbTelaCadastroUsuarioMenuOpcoesConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbTelaCadastroUsuarioMenuOpcoesConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbTelaCadastroUsuarioMenuOpcoesConsultarActionPerformed(evt);
@@ -283,6 +287,7 @@ this.setIconImage(iconeTelaPrincipal);
 
         jbTelaCadastroUsuarioMenuOpcoesAdicionar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jbTelaCadastroUsuarioMenuOpcoesAdicionar.setText("Adicionar");
+        jbTelaCadastroUsuarioMenuOpcoesAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbTelaCadastroUsuarioMenuOpcoesAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbTelaCadastroUsuarioMenuOpcoesAdicionarActionPerformed(evt);
@@ -389,7 +394,7 @@ this.setIconImage(iconeTelaPrincipal);
         jftflCadastroUsuarioJPtelefone.setBounds(410, 300, 130, 30);
 
         jcbCadastroUsuarioJPperfil.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jcbCadastroUsuarioJPperfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administrador", "Caixa", "Usuário do Sistema", "" }));
+        jcbCadastroUsuarioJPperfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Administrador", "Caixa", "Usuário do Sistema", " " }));
         jpTelaCadastroUsuarioAcolheImagemAzulUsuarios.add(jcbCadastroUsuarioJPperfil);
         jcbCadastroUsuarioJPperfil.setBounds(410, 380, 200, 30);
 
